@@ -1,0 +1,4 @@
+
+server:
+  error:
+    include-stacktrace: on_param # passar trace=true na url para ver o stacktrace

@@ -27,8 +27,28 @@
         (file -> settings -> Annotation Processors [X] enable annotation processing).
         3° Instalar o plugin do Lombok em (file -> settings -> plugins [pesquisa por lombok e instale]).
 
+-       application.properties (Hoje em dia é uma boa prática renomear ele para application.yml)
+
+-       server:
+            error:
+                include-stacktrace: on_param  (passar trace=true na url para ver o stacktrace)
+
+-       Mapeamento com Jackson (caso o nome do atributo que venha na requisição não seja igual o que você espera,
+        você pode fazer um mapeamento no seu pojo)
+        Ex: nameCharacter e name, você precisa anotalo com :
+        @JsonProperty("name")
+        private String nameCharacter;
+
+###     Idepotêcia (RFC7231)
+
+-       Os metodos https idepotentes são os métodos que não importando a quantidade de vezes que eles são execultados,
+        eles não irão mudar o estado do servidor exemplo GET E DELETE, seção (4.2.2, 8.1.3)
+
+
+
 ###     Atalhos
 
--       ctrl + F9 : Builda o projeto;
+-       ctrl + F9 : Builda o projeto.
+-       Shift + F9 : Recompila o projeto.
 -       ctrl + alt + O : corrige as importações.
 -       ctrl + shift + F10 : Inicializa a aplicação.
