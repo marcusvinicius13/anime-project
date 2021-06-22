@@ -52,3 +52,16 @@
 -       Shift + F9 : Recompila o projeto.
 -       ctrl + alt + O : corrige as importações.
 -       ctrl + shift + F10 : Inicializa a aplicação.
+
+
+
+###     Docker - Compose
+
+-       Cria o arquivo docker-compose.yml, onde ficação as configurações das imagens.
+
+-       docker-compose up : Baixa a imagem e sobe o container no docker.
+-       docker ps : Lista os containers em execução.
+-       docker-compose down:  remos todos os containers.
+-       docker ps -a Lista todos os container, até os que estão parados.
+-       ctrl + C : para os containers que estão sendo executados.
+
