@@ -39,6 +39,19 @@
         @JsonProperty("name")
         private String nameCharacter;
 
+-       Temos uma forma a título de conhecimento, de criar um Builder do objeto, 
+        ou seja transformar de forma automática, um objeto em um DTO, que é o Builder do Lombook.
+        Ex: Anime anime = Anime.builder().name(animePostRequestBody.getName()).build();
+        Claro que temos formas mas automática de utilizar framworks para fazer esse tipo de converção.
+
+-       Com Java 8 podemos fazer uma busca dentro de uma lista utilizando stream
+        return animes.stream()
+        .filter(anime -> anime.getId().equals(id))
+        .findFirst()
+        .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Anime not Found"));
+
+
+
 ###     Idepotêcia (RFC7231)
 
 -       Os metodos https idepotentes são os métodos que não importando a quantidade de vezes que eles são execultados,

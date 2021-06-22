@@ -1,6 +1,8 @@
 package br.com.academy.controller;
 
 import br.com.academy.domain.Anime;
+import br.com.academy.requests.AnimePostRequestBody;
+import br.com.academy.requests.AnimePutRequestBody;
 import br.com.academy.service.AnimeService;
 import br.com.academy.util.DateUtil;
 import lombok.AllArgsConstructor;
@@ -30,11 +32,11 @@ public class AnimeController {
     @GetMapping(path = "/{id}")
     public ResponseEntity<Anime> show(@PathVariable Long id) {
         log.info(dateUtil.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now()));
-        return ResponseEntity.ok(animeService.show(id));
+        return ResponseEntity.ok(animeService.showOrThrowBadRequestException(id));
     }
 
     @PostMapping
-    public ResponseEntity<Anime> create(@RequestBody Anime anime) {
+    public ResponseEntity<Anime> create(@RequestBody AnimePostRequestBody anime) {
         return new ResponseEntity<>(animeService.save(anime), HttpStatus.CREATED);
     }
 
@@ -45,8 +47,8 @@ public class AnimeController {
     }
 
     @PutMapping
-    public ResponseEntity<Void> replace(@RequestBody Anime anime) {
-        animeService.replace(anime);
+    public ResponseEntity<Void> replace(@RequestBody AnimePutRequestBody animePutRequestBody) {
+        animeService.replace(animePutRequestBody);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
