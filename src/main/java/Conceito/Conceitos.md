@@ -41,7 +41,10 @@
 
 -       Temos uma forma a título de conhecimento, de criar um Builder do objeto, 
         ou seja transformar de forma automática, um objeto em um DTO, que é o Builder do Lombook.
-        Ex: Anime anime = Anime.builder().name(animePostRequestBody.getName()).build();
+        Ex: Anime anime = Anime.builder()
+                .id(animePutRequestBody.getId())
+                .name(animePutRequestBody.getName())
+                .build();
         Claro que temos formas mas automática de utilizar framworks para fazer esse tipo de converção.
 
 -       Com Java 8 podemos fazer uma busca dentro de uma lista utilizando stream
@@ -51,12 +54,17 @@
         .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Anime not Found"));
 
 
+###     Map Struct
+
+-       O Map Struct, é um FramWork, para mapeamento de DTOs, automático, mesmo se o nome dos campos forem diferentes, 
+        ele aceita um mapeamento passando o do campo origem e o destino.
+        
 
 ###     Idepotêcia (RFC7231)
 
 -       Os metodos https idepotentes são os métodos que não importando a quantidade de vezes que eles são execultados,
         eles não irão mudar o estado do servidor exemplo GET E DELETE, seção (4.2.2, 8.1.3)
-
+        Ex: @Mapping(source = "name", target = "nameSearch").
 
 
 ###     Atalhos
@@ -65,6 +73,7 @@
 -       Shift + F9 : Recompila o projeto.
 -       ctrl + alt + O : corrige as importações.
 -       ctrl + shift + F10 : Inicializa a aplicação.
+-       ctrl + alt + v : No pom gera uma variável do properties.
 
 
 

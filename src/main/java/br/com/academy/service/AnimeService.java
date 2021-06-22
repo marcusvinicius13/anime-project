@@ -1,6 +1,7 @@
 package br.com.academy.service;
 
 import br.com.academy.domain.Anime;
+import br.com.academy.mapper.AnimeMapper;
 import br.com.academy.repository.AnimeRepository;
 import br.com.academy.requests.AnimePostRequestBody;
 import br.com.academy.requests.AnimePutRequestBody;
@@ -21,6 +22,10 @@ public class AnimeService {
         return animeRepository.findAll();
     }
 
+    public List<Anime> listByName(String name){
+        return animeRepository.findByName(name);
+    }
+
     public Anime showOrThrowBadRequestException(Long id){
         return animeRepository
                 .findById(id)
@@ -28,8 +33,7 @@ public class AnimeService {
     }
 
     public Anime save(AnimePostRequestBody animePostRequestBody) {
-        Anime anime = Anime.builder().name(animePostRequestBody.getName()).build();
-        return animeRepository.save(anime);
+        return animeRepository.save(AnimeMapper.INSTANCE.toAnime(animePostRequestBody));
     }
 
     public void delete(long id) {
@@ -38,12 +42,7 @@ public class AnimeService {
 
     public void replace(AnimePutRequestBody animePutRequestBody) {
         showOrThrowBadRequestException(animePutRequestBody.getId());
-
-        Anime anime = Anime.builder()
-                .id(animePutRequestBody.getId())
-                .name(animePutRequestBody.getName())
-                .build();
-
+        final Anime anime = AnimeMapper.INSTANCE.toAnime(animePutRequestBody);
         animeRepository.save(anime);
     }
 }
