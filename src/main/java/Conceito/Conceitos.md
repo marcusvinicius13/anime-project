@@ -53,6 +53,11 @@
         .findFirst()
         .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Anime not Found"));
 
+-       @Transactional : Essa anotação garante que caso haja uma exeção, 
+        tenha um rollback da trasação no banco de dados! 
+
+
+
 
 ###     Map Struct
 
