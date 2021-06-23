@@ -79,6 +79,7 @@
 -       ctrl + alt + O : corrige as importações.
 -       ctrl + shift + F10 : Inicializa a aplicação.
 -       ctrl + alt + v : No pom gera uma variável do properties.
+-       ctrl + L : Abre a consulta.
 
 
 

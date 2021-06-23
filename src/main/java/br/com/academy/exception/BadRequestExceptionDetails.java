@@ -1,18 +1,10 @@
 package br.com.academy.exception;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
+import lombok.experimental.SuperBuilder;
 
-import java.time.LocalDateTime;
-
-@Data
-@Builder
-public class BadRequestExceptionDetails {
-
-    private String title;
-    private String details;
-    private String developerMessage;
-    private int status;
-    private LocalDateTime timestamp;
+@Getter
+@SuperBuilder
+public class BadRequestExceptionDetails extends ExceptionDetails {
 
 }
