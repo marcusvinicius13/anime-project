@@ -80,6 +80,7 @@
 -       ctrl + shift + F10 : Inicializa a aplicação.
 -       ctrl + alt + v : No pom gera uma variável do properties.
 -       ctrl + L : Abre a consulta.
+-       ctrl + O : Dentro da classe que implementa uma interface, ele abre os métodos que podem ser sobreescrito.
 
 
 
