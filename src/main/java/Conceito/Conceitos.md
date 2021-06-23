@@ -56,7 +56,7 @@
 -       @Transactional : Essa anotação garante que caso haja uma exeção, 
         tenha um rollback da trasação no banco de dados! 
 
-
+-       Rest Template : É utilizado para fazer requisições REST, para APIs externas
 
 
 ###     Map Struct
