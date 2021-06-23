@@ -1,6 +1,7 @@
 package br.com.academy.service;
 
 import br.com.academy.domain.Anime;
+import br.com.academy.exception.BadRequestException;
 import br.com.academy.mapper.AnimeMapper;
 import br.com.academy.repository.AnimeRepository;
 import br.com.academy.requests.AnimePostRequestBody;
@@ -29,7 +30,7 @@ public class AnimeService {
     public Anime showOrThrowBadRequestException(Long id){
         return animeRepository
                 .findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Anime not Found"));
+                .orElseThrow(() -> new BadRequestException("Anime not Found"));
     }
 
     public Anime save(AnimePostRequestBody animePostRequestBody) {
@@ -42,7 +43,7 @@ public class AnimeService {
 
     public void replace(AnimePutRequestBody animePutRequestBody) {
         showOrThrowBadRequestException(animePutRequestBody.getId());
-        final Anime anime = AnimeMapper.INSTANCE.toAnime(animePutRequestBody);
+        var anime = AnimeMapper.INSTANCE.toAnime(animePutRequestBody);
         animeRepository.save(anime);
     }
 }
