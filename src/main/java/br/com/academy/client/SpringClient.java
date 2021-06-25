@@ -1,7 +1,7 @@
 package br.com.academy.client;
 
 import br.com.academy.domain.Anime;
-import br.com.academy.domain.Parlamentar;
+import br.com.academy.domain.deeppar.Parlamentar;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.core.ParameterizedTypeReference;
@@ -15,6 +15,38 @@ import java.util.List;
 @Log4j2
 public class SpringClient {
     public static void main(String[] args) {
+        retornaParlamentares();
+    }
+
+    private static HttpHeaders createJsonHeader() {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        return httpHeaders;
+    }
+
+    private static Parlamentar retornaParlamentares() {
+        String parlamentarEntity = new RestTemplate()
+                .getForEntity("https://dadosabertos.camara.leg.br/api/v2/deputados/204554", String.class).getBody();
+
+        String[] split = parlamentarEntity.split("\\{\"dados\":");
+        String[] split1 = split[1].split(",\"links\":\\[");
+
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        String par = split1[0];
+
+        try {
+            Parlamentar parlamentar = objectMapper.readValue(par, Parlamentar.class);
+
+            log.info(parlamentar);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    private void retornaAnime() {
         Anime anime = new RestTemplate().getForEntity("http://localhost:8080/animes/1", Anime.class).getBody();
 
         Anime object = new RestTemplate().getForObject("http://localhost:8080/animes/{id}", Anime.class, 1);
@@ -65,49 +97,4 @@ public class SpringClient {
                 animeToBeUpdated.getId());
         log.info("updated anime {}", samuraiShamplooDeleted);
     }
-
-    private static HttpHeaders createJsonHeader() {
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-        return httpHeaders;
-    }
-
-    private Parlamentar retornaParlamentares() {
-        String parlamentarEntity = new RestTemplate()
-                .getForEntity("https://dadosabertos.camara.leg.br/api/v2/deputados/204554", String.class).getBody();
-
-
-        String[] split = parlamentarEntity.split("\\{\"dados\":");
-        String[] split1 = split[1].split(",\"links\":\\[");
-
-
-//        log.info(new RestTemplate()
-//                .getForEntity("https://dadosabertos.camara.leg.br/api/v2/deputados/204554", Object.class));
-
-//       Parlamentar parlamentar = new RestTemplate().getForObject("https://dadosabertos.camara.leg.br/api/v2/deputados/204554", Parlamentar.class);
-
-        //log.info(parlamentarEntity);
-//        log.info(parlamentar);
-
-
-        ObjectMapper objectMapper = new ObjectMapper();
-
-        String par = split1[0];
-
-        boolean palavra = "Java322".matches("^Java.*");
-        System.out.println(palavra);
-
-        split1[0]. split("");
-        try {
-            Parlamentar parlamentar = objectMapper.readValue(par, Parlamentar.class);
-
-            log.info(parlamentar);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
 }
-
-

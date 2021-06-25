@@ -1,11 +1,10 @@
-package br.com.academy.domain;
+package br.com.academy.domain.deeppar;
 
-import br.com.academy.domain.deeppar.UltimoStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -21,9 +20,9 @@ public class Parlamentar {
     private String cpf;
     private Character sexo;
     private String urlWebsite;
-    private String redeSocial;
-//    private LocalDateTime dataNascimento;
-//    private LocalDateTime dataFalecimento;
+    private List<String> redeSocial;
+    private String dataNascimento;
+    private String dataFalecimento;
     private String ufNascimento;
     private String municipioNascimento;
     private String escolaridade;

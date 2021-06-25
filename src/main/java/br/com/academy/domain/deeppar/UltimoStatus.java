@@ -3,6 +3,7 @@ package br.com.academy.domain.deeppar;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.tomcat.jni.Local;
 
 import java.time.LocalDateTime;
 
@@ -19,7 +20,7 @@ public class UltimoStatus {
     private Long idLegislatura;
     private String urlFoto;
     private String email;
-//    private LocalDateTime data;
+    private String data;
     private String nomeEleitoral;
 
     private Gabinete gabinete;

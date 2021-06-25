@@ -94,3 +94,5 @@
 -       docker ps -a Lista todos os container, até os que estão parados.
 -       ctrl + C : para os containers que estão sendo executados.
 
+###     Teste Banco de dados
+
