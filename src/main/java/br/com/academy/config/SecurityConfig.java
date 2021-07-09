@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 @EnableWebSecurity
 @Log4j2
@@ -14,7 +15,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+        /*
+        *   Essa configuração é essencial para obrigar os clientes que fazem requisições http, para esse back,
+        *   tem que mandar o token gerado pelo backend.
+        *   csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()) : configura o cors
+        * */
+        http.csrf().disable() //    Troca essa linha pela linha de cima
+                .authorizeRequests()
                 .anyRequest()
                 .authenticated()
                 .and()

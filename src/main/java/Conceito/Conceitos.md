@@ -58,6 +58,9 @@
 
 -       Rest Template : É utilizado para fazer requisições REST, para APIs externas
 
+###     Cors
+
+-       Cors é quando alguém executa uma ação em seu nome.
 
 ###     Map Struct
 
