@@ -94,5 +94,46 @@
 -       docker ps -a Lista todos os container, até os que estão parados.
 -       ctrl + C : para os containers que estão sendo executados.
 
-###     Teste Banco de dados
+###     Teste Banco de dados : @DataJpaTest
+
+-       @DataJpaTest
+        @DisplayName("Tests for AnimeRepository")
+        @Log4j2 
+        class AnimeRepositoryTest {
+            ...
+        }
+
+###     Testes Unitários 
+
+-       Na classe em que vamos escrever nossos testes, podemos anotala de duas principais formas.
+        1ª Podemos anotala com o  @SpingBootTest : O problema dessa abordagem é que temos que ter o banco dados rodando,
+        porque ele inicia o contexto da aplicação.
+        2ª Podemos anotala com o @ExtendWith(SpringExtension.class), assim não precisa inicializar o contexto do spring.
+
+###     Testes de Banco de Dados 
+
+
+
+###     Testes de Integração
+
+-       Os testes de integração o que difere dos demais é que ele simula uma execusão 
+        até mesmo do servidor.
+
+
+###     Falando em Testes vamos utilizar o Mokito para mocar os nossos dados.
+
+-       @InjectMocks : Utilizamos quando queremos testar a classe em si!
+
+-       @Moke : É utilizado para testar todas as classes que está dentro da classe que iremos testar.
+
+-       Primeiro passo é definir o comportamento dos mokes, de cada método que queremos testar.
+
+
+###     Profile de teste
+
+-       Temos que fazer algumas configurações de profile dentro do pom.xml, 
+        para utilizarmos o maven para executar, os nossos testes.
+
+-       Com o profile configurado no pom.xml, executamos o comando :
+        mvn test -Pintegration-tests (mvn test -P + o nome do id que foi configurado no profile)
 

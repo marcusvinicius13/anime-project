@@ -3,9 +3,6 @@ package br.com.academy.domain.deeppar;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.apache.tomcat.jni.Local;
-
-import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
