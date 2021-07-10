@@ -12,10 +12,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -37,10 +38,20 @@ public class AnimeController {
         return new ResponseEntity<>(animeService.listAllNonPageable(), HttpStatus.OK);
     }
 
+    // Sem pegar o usuário que vem na requisição autenticado
     @GetMapping(path = "/{id}")
     public ResponseEntity<Anime> show(@PathVariable Long id) {
         return ResponseEntity.ok(animeService.showOrThrowBadRequestException(id));
     }
+    /* Pegando o usuário logado, está quebrando os testes por isso foi removido
+
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<Anime> showAuthenticationPricipal(@PathVariable Long id,
+                                                            @AuthenticationPrincipal UserDetails userDetails) {
+        log.info(userDetails);
+        return ResponseEntity.ok(animeService.showOrThrowBadRequestException(id));
+    }
+     */
 
     @GetMapping(path = "/find")
     public ResponseEntity<List<Anime>> show(@RequestParam String name) {

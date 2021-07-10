@@ -1,5 +1,7 @@
 package br.com.academy.config;
 
+import br.com.academy.service.UsersDetailsService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -12,7 +14,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 @Log4j2
 @EnableGlobalMethodSecurity(prePostEnabled = true) // Fala pro Spring habilitar a parte de prePort
+@RequiredArgsConstructor
+@SuppressWarnings("java:S5344")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    private final UsersDetailsService usersDetailsService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -32,16 +38,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+        log.info("Password encoded {} ", passwordEncoder.encode("academy"));
+
+        //  Usuário vindo da memória
         auth.inMemoryAuthentication()
-                .withUser("marcus")
+                .withUser("daniel")
                 .password(passwordEncoder.encode("academy"))
                 .roles("USER", "ADMIN")
                 .and()
-                .withUser("vinicius")
+                .withUser("clarice")
                 .password(passwordEncoder.encode("academy"))
                 .roles("USER");
+
+        //  Usuário vindo do Banco de dados
+        auth.userDetailsService(usersDetailsService)
+                .passwordEncoder(passwordEncoder);
     }
 }
-
-
-to continue https://www.youtube.com/watch?v=NZHLNeoUYWM&list=PL62G310vn6nFBIxp6ZwGnm8xMcGE3VA5H&index=43

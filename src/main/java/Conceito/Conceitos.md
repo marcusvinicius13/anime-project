@@ -113,9 +113,6 @@
         porque ele inicia o contexto da aplicação.
         2ª Podemos anotala com o @ExtendWith(SpringExtension.class), assim não precisa inicializar o contexto do spring.
 
-###     Testes de Banco de Dados 
-
-
 
 ###     Testes de Integração
 
@@ -139,4 +136,33 @@
 
 -       Com o profile configurado no pom.xml, executamos o comando :
         mvn test -Pintegration-tests (mvn test -P + o nome do id que foi configurado no profile)
+
+
+##      Autenticação 
+
+###     Autenticação em memória
+
+-       Spring Security framwork de autenticação, para o Spring, colocamos a dependencia no pom.xml.
+        Criamos uma classe de configuração, que chamamos no nosso projeto de SpringConfig.
+        Nessa classe colocamos toda nossa parte de configuração de autenticação e autorização.
+        Outras configurações que fazemos é de CSRF.
+
+###     Autenticação utilizando banco de dados
+
+-       1° Precisamos criar uma classe para representar o nosso usuário.
+        2° Precisamos criar uma interface
+        que faça a busca por usuário no banco de dados (UserRepository).
+        3° Precisamos criar um service que implemente UserDetailsService, 
+        e sobrecarregamos o método que busca o usuário pelo nome, 
+        depois isso pode ser alterado para buscar por e-mail por exemplo.
+
+
+
+
+
+###     Pegando Usuário da Requisição
+
+-       Para Capturarmos o usuário que vem na requisição, que estaja autiticado.
+        É bem fácio com o Spring podemos utilizar :
+        No nosso controller @AuthenticationPrincipal UserDetails userDetails
 

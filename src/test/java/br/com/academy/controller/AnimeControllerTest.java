@@ -1,6 +1,7 @@
 package br.com.academy.controller;
 
 import br.com.academy.domain.Anime;
+import br.com.academy.domain.User;
 import br.com.academy.requests.AnimePostRequestBody;
 import br.com.academy.requests.AnimePutRequestBody;
 import br.com.academy.service.AnimeService;
