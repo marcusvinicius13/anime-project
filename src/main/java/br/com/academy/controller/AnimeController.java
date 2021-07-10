@@ -58,19 +58,19 @@ public class AnimeController {
         return ResponseEntity.ok(animeService.showByName(name));
     }
 
-    @PostMapping
-    @PreAuthorize("hasRole('ADMIN')") // Só autoriza os usuários com a role de ADMIN
+    @PostMapping("/admin")
+   // @PreAuthorize("hasRole('ADMIN')") // Só autoriza os usuários com a role de ADMIN
     public ResponseEntity<Anime> create(@RequestBody @Valid AnimePostRequestBody anime) {
         return new ResponseEntity<>(animeService.save(anime), HttpStatus.CREATED);
     }
 
-    @DeleteMapping(path = "/{id}")
+    @DeleteMapping(path = "/admin/{id}")
     public ResponseEntity<Void> destroy(@PathVariable long id) {
         animeService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @PutMapping
+    @PutMapping("/admin")
     public ResponseEntity<Void> replace(@RequestBody AnimePutRequestBody animePutRequestBody) {
         animeService.replace(animePutRequestBody);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

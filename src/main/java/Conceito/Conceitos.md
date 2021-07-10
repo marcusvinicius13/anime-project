@@ -147,7 +147,7 @@
         Nessa classe colocamos toda nossa parte de configuração de autenticação e autorização.
         Outras configurações que fazemos é de CSRF.
 
-###     Autenticação utilizando banco de dados
+###     Autenticação utilizando Banco de Dados
 
 -       1° Precisamos criar uma classe para representar o nosso usuário.
         2° Precisamos criar uma interface
@@ -155,6 +155,8 @@
         3° Precisamos criar um service que implemente UserDetailsService, 
         e sobrecarregamos o método que busca o usuário pelo nome, 
         depois isso pode ser alterado para buscar por e-mail por exemplo.
+
+###     Proteção de urls com Ant Matchers
 
 
 

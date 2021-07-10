@@ -27,10 +27,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         *   tem que mandar o token gerado pelo backend.
         *   csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()) : configura o cors
         * */
-        http.csrf().disable() //    Troca essa linha pela linha de cima
+        http.csrf().disable()
+//                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()) Lembra de habilitar em produção
+//                .and()
                 .authorizeRequests()
+                .antMatchers("/animes/admin/**").hasRole("ADMIN")
+                .antMatchers("/animes/**").hasRole("USER")
+                .antMatchers("/actuator/**").permitAll()  //Caso queira liberar o acesso
                 .anyRequest()
                 .authenticated()
+                .and()
+                .formLogin()
                 .and()
                 .httpBasic();
     }
