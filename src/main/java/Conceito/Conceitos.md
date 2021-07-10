@@ -168,3 +168,13 @@
         É bem fácio com o Spring podemos utilizar :
         No nosso controller @AuthenticationPrincipal UserDetails userDetails
 
+
+###     Documentação Open API Spring Boot
+
+-        url : https://springdoc.org/
+
+-       Coloca a dependência no pom.xml
+
+-       Temos acesso a documentação através da urls : 
+        http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/
+        http://localhost:8080/v3/api-docs
