@@ -39,11 +39,11 @@ public class AnimeController {
     }
 
     // Sem pegar o usuário que vem na requisição autenticado
-    @GetMapping(path = "/{id}")
+    @GetMapping(path = "by-id/{id}")
     public ResponseEntity<Anime> show(@PathVariable Long id) {
         return ResponseEntity.ok(animeService.showOrThrowBadRequestException(id));
     }
-    /* Pegando o usuário logado, está quebrando os testes por isso foi removido
+    // Pegando o usuário logado, está quebrando os testes por isso foi removido
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<Anime> showAuthenticationPricipal(@PathVariable Long id,
@@ -51,7 +51,7 @@ public class AnimeController {
         log.info(userDetails);
         return ResponseEntity.ok(animeService.showOrThrowBadRequestException(id));
     }
-     */
+
 
     @GetMapping(path = "/find")
     public ResponseEntity<List<Anime>> show(@RequestParam String name) {
